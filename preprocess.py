@@ -31,10 +31,15 @@ def create_action_list_with_variable_deltas():
 
     df = read_csv_process_time('action_data.csv')
     for _, row in df.iterrows():
-        action_list.append("t<" + str(row['time_delta']) + ">")
+        action_list.append('t<' + str(row['time_delta']) + '>')
         action_list.append(f'{row['type']}' + " : " +  f'{row['info']}')
         
-    print(*action_list, sep= '\n') 
+    
+    
+    for row in action_list:
+        print(row)
+        append_to_csv('action_tokens.csv', [row])
+    
     return action_list   
         
 create_action_list_with_variable_deltas()
